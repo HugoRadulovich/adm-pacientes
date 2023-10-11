@@ -5,21 +5,26 @@ import { Formulario } from "./components/Formulario";
 
 
 function App() {
-  const [pacientes, setPacientes] = useState([])
+  const init = JSON.parse(localStorage.getItem('pacientes')) ?? [];
+  const [pacientes, setPacientes] = useState(init)
   const [paciente, setPaciente] = useState([])
-  // const [formState, setFormState] = useState({
-  //     id: Date.now(),
-  //     nombre: '',
-  //     propietario: '',
-  //     email:'',
-  //     alta:'',
-  //     sintomas: '',
-  // })
+
   
 
- useEffect(() => {
-  if (paciente.length === 0) return 
- }, [paciente])
+  // useEffect(() => {
+  //   const obtenerLS = () => {
+  //     const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) 
+  //     console.log(pacientesLS)
+  //     setPacientes(pacientesLS)
+  //   }
+  //   obtenerLS();
+      
+  // }, [])
+
+
+  useEffect(() => {
+    localStorage.setItem('pacientes',JSON.stringify(pacientes))
+  }, [pacientes])
  
   
 
@@ -31,20 +36,20 @@ const onDeletePaciente = (id) => {
 
   return (
     <>
-      <header className="">
-        <h1 className="text-center">Seguimiento de Pacientes Veterinaria</h1>
+      <header className="h-40 flex justify-center items-center">
+        <h1 className="text-center text-4xl font-bold ">Seguimiento de Pacientes Veterinaria</h1>
       </header>
       <main className="grid grid-cols-2 h-screen ">
-        <section className="bg-indigo-600 flex flex-col gap-2">
-          <h1 className="text-center text-3xl font-bold">Agregar Pacientes</h1>
+        <section className="flex flex-col  gap-2 p-2 m-2 ">
+          <h1 className=" text-2xl font-bold text-violet-700">Agregar Pacientes</h1>
           <Formulario 
           pacientes={pacientes} 
           setPacientes={setPacientes}
           paciente={paciente}
           setPaciente={setPaciente}/>
         </section>
-        <section className="bg-red-600 flex flex-col gap-2">
-            <h1 className="text-center text-3xl font-bold">Comienza agregando un paciente y apareceran en este lugar</h1>
+        <section className=" flex flex-col  gap-2 p-2 m-2 ">
+            <h1 className="text-2xl font-bold text-red-400">{(pacientes.length > 0) ? 'Administra tus pacientes' : 'Carga un paciente'}</h1>
               <ul className="">
                 <PacienteItem 
                   pacientes={pacientes} 
