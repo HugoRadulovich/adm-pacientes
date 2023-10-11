@@ -37,11 +37,12 @@ const onDeletePaciente = (id) => {
   return (
     <>
       <header className="h-40 flex justify-center items-center">
-        <h1 className="text-center text-4xl font-bold ">Seguimiento de Pacientes Veterinaria</h1>
+        <h1 className="text-center text-4xl font-bold ">Seguimiento de <span className="text-blue-500">Pacientes Veterinaria</span></h1>
       </header>
       <main className="grid grid-cols-2 h-screen ">
         <section className="flex flex-col  gap-2 p-2 m-2 ">
-          <h1 className=" text-2xl font-bold text-violet-700">Agregar Pacientes</h1>
+          <h1 className=" text-2xl font-bold text-blue-400 text-center">Agregar Pacientes</h1>
+         
           <Formulario 
           pacientes={pacientes} 
           setPacientes={setPacientes}
@@ -49,7 +50,8 @@ const onDeletePaciente = (id) => {
           setPaciente={setPaciente}/>
         </section>
         <section className=" flex flex-col  gap-2 p-2 m-2 ">
-            <h1 className="text-2xl font-bold text-red-400">{(pacientes.length > 0) ? 'Administra tus pacientes' : 'Carga un paciente'}</h1>
+            <h1 className="text-2xl font-bold text-blue-400 text-center">{(pacientes.length > 0) ? 'Lista de pacientes' : 'Carga un paciente'}</h1>
+             
               <ul className="">
                 <PacienteItem 
                   pacientes={pacientes} 
